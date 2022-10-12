@@ -1,13 +1,14 @@
 // import { addContact, deleteContact, filterContacts } from "./actions";
 import { createReducer, createAction } from "@reduxjs/toolkit";
-import { addNewUser, logInUser, logOutUser } from "./operationsAuth";
+import { addNewUser, logInUser, logOutUser, refreshUser } from "./operationsAuth";
 import { fetchContacts, addContact, deleteContact } from "./operations";
 
 const initialState = {
   user: {name: '', email: ''},
   token: '',
   logedIn: false,
-  loading: false,
+  isRefreshing: false,
+  errors: '',
   contacts: {
     items: [],
     isLoading: false,
@@ -35,6 +36,18 @@ export const contactsReducer = createReducer(initialState, {
       state.user = actions.payload.user;
       state.token = actions.payload.token;
       state.logedIn = true;
+    },
+    [refreshUser.pending]: (state) => {
+      state.isRefreshing = true;
+    },
+    [refreshUser.fulfilled]: (state, actions) => {
+      state.user = actions.payload;
+      state.isRefreshing = false;
+      state.logedIn = true;
+    },
+    [refreshUser.rejected]: (state, actions) => {
+      state.errors = actions.payload;
+      state.isRefreshing = false;
     },
     [fetchContacts.pending]: (state) => {
       state.contacts.isLoading = true;

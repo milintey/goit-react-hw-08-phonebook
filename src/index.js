@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { ThemeProvider } from 'styled-components';
 import { App } from 'components/App';
 import { theme } from './theme';
-import { store } from './redux/store'
+import { store } from './redux/store';
+import { persistor } from './redux/store';
+
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -13,7 +16,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ThemeProvider theme={theme}>
       <Provider store={store}>
           <BrowserRouter>
-            <App />
+            <PersistGate loading={null} persistor={persistor}>
+              <App />
+            </PersistGate>
           </BrowserRouter>
       </Provider>
     </ThemeProvider>

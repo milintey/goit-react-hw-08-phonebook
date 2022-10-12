@@ -52,3 +52,25 @@ export const addNewUser = createAsyncThunk(
       }
     }
   );
+
+  export const refreshUser = createAsyncThunk(
+    "user/refresh",
+    async (_, thunkAPI) => {
+      const token = thunkAPI.getState().contacts.token;
+      console.log(token);
+      
+      if (!token) {
+        return thunkAPI.rejectWithValue('No valid token');
+      }
+
+      setAuthHeader(token);
+
+      try {
+        const response = await axios.get('/users/current');
+        console.log(response.data);
+        return response.data;
+      } catch (e) {
+        return thunkAPI.rejectWithValue(e.message);
+      }
+    }
+  );
