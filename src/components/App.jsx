@@ -12,13 +12,13 @@ import { Layout } from './Layout';
 import { RestrictedRoute } from './RestrictedRoute/RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
 
-function Blah() {
-  return (
-    <div>
-      <h2>This is the blah page</h2>
-    </div>
-  );
-}
+// function Blah() {
+//   return (
+//     <div>
+//       <h2>This is the blah page</h2>
+//     </div>
+//   );
+// }
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ export const App = () => {
   ) : (
     <div>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/goit-react-hw-08-phonebook" element={<Layout />}>
           <Route path="/home" element={<HomePage />} />
           <Route
             path="/signUpPage"
@@ -63,7 +63,7 @@ export const App = () => {
             }
           />
         </Route>
-        <Route path="/goit-react-hw-08-phonebook" element={<Blah />} />
+        {/* <Route path="/goit-react-hw-08-phonebook" element={<Blah />} /> */}
       </Routes>
 
       <GlobalStyle />
