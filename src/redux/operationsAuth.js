@@ -17,7 +17,6 @@ export const addNewUser = createAsyncThunk(
       try {
         const response = await axios.post('/users/signup', user);
         setAuthHeader(response.data.token);
-        console.log(response.data);
         return response.data;
       } catch (e) {
         return thunkAPI.rejectWithValue(e.message);
@@ -31,7 +30,6 @@ export const addNewUser = createAsyncThunk(
       try {
         const response = await axios.post('/users/login', user);
         setAuthHeader(response.data.token);
-        console.log(response.data);
         return response.data;
       } catch (e) {
         return thunkAPI.rejectWithValue(e.message);
@@ -45,7 +43,6 @@ export const addNewUser = createAsyncThunk(
       try {
         const response = await axios.post('/users/logout');
         clearAuthHeader();
-        console.log(response.data);
         return response.data;
       } catch (e) {
         return thunkAPI.rejectWithValue(e.message);
@@ -57,7 +54,6 @@ export const addNewUser = createAsyncThunk(
     "user/refresh",
     async (_, thunkAPI) => {
       const token = thunkAPI.getState().contacts.token;
-      console.log(token);
       
       if (!token) {
         return thunkAPI.rejectWithValue('No valid token');
@@ -67,7 +63,6 @@ export const addNewUser = createAsyncThunk(
 
       try {
         const response = await axios.get('/users/current');
-        console.log(response.data);
         return response.data;
       } catch (e) {
         return thunkAPI.rejectWithValue(e.message);
