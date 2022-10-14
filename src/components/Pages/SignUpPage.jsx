@@ -22,7 +22,6 @@ export const SignUpPage = () => {
 
   const formSubmit = (value, { resetForm }) => {
     dispatch(addNewUser(value));
-    console.log(value);
     resetForm();
   };
 

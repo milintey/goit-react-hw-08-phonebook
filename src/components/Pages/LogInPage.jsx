@@ -21,7 +21,6 @@ export const LogInPage = () => {
 
   const formSubmit = (value, { resetForm }) => {
     dispatch(logInUser(value));
-    console.log(value);
     resetForm();
   };
 

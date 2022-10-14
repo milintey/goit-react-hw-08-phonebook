@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/operations';
 import { filterContact } from 'components/FilterContact/FilterContact';
-import { contactsState, filterState } from 'redux/selectors';
+import { filterState, contactsState } from 'redux/selectors';
 import {
   Button,
   ContactItem,

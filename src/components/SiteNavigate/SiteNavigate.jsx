@@ -5,7 +5,6 @@ import { UserMenu } from 'components/UserMenu/UserMenu';
 
 export const SiteNavigate = () => {
   const userLogedIn = useSelector(selectLogedIn);
-  console.log(userLogedIn);
 
   return (
     <SiteNav>

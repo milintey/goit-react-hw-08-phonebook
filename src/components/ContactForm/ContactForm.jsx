@@ -26,11 +26,6 @@ export const ContactForm = () => {
       return;
     }
 
-    if (contactsItem.some(cont => cont.namber === value.number)) {
-      alert(`User number ${value.number} already exists`);
-      return;
-    }
-
     dispatch(addContact(value));
     resetForm();
   };

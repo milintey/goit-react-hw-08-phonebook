@@ -79,8 +79,8 @@ export const contactsReducer = createReducer(initialState, {
     [deleteContact.fulfilled]: (state, action) => {
       state.contacts.isLoading = false;
       state.contacts.error = null;
-      const idx = state.contacts.items.findIndex(cont => cont.id === action.payload);
-      state.contacts.items.splice(idx, 1)
+      const index = state.contacts.items.findIndex(cont => cont.id === action.meta.arg);
+      state.contacts.items.splice(index, 1);
     },
     [deleteContact.rejected]: (state, action) => {
       state.contacts.isLoading = false;
