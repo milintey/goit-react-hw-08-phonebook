@@ -12,12 +12,12 @@ export const ContactList = () => {
   const dispatch = useDispatch();
   const contactsItem = useSelector(contactsState);
   const filter = useSelector(filterState);
-
   const contacts = filterContact(contactsItem, filter);
 
   return (
     <div>
       <h2>Contacts</h2>
+      <h3>My Contacts</h3>
       <ul>
         {contacts.map(({ id, name, number }) => {
           return (
