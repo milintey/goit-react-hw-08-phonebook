@@ -1,23 +1,33 @@
 import styled from 'styled-components';
 import { ReactSVG } from 'react-svg';
+import { Form, Field } from 'formik';
 
 export const ContactContainer = styled.div`
-  /* display: flex;
-  align-items: center;
-  justify-content: space-between; */
   margin-top: 130px;
   position: relative;
   padding: 20px 30px;
   width: 470px;
   height: ${props => props.hg};
-  background-color: aqua;
+  /* background-color: aqua; */
+
   transition: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: ${props => props.delaycontact};
+
   overflow: hidden;
+  margin-left: 50px;
 
   border-radius: 20px;
   background-color: #fdfdfd;
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.12),
     0px 0px 5px 0px rgba(0, 0, 0, 0.12);
+`;
+
+export const FormContact = styled(Form)`
+  opacity: ${p => p.opacity};
+  transition: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: ${props => props.delayform};
+  transition-property: opacity, transform;
+  transform: scale(${p => p.scale});
 `;
 
 export const DivNone = styled.div`
@@ -29,11 +39,9 @@ export const DivNone = styled.div`
   transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1);
   transition-delay: 400ms;
   transform: scale(1.1);
-  /* transition: opacity 3000 cubic-bezier(0.4, 0, 0.2, 1); */
 `;
 
 export const Divi = styled.div`
-  /* display: ${p => p.non}; */
   width: 40px;
   height: 40px;
   border-radius: 100px;
@@ -41,11 +49,9 @@ export const Divi = styled.div`
   margin-top: 20px;
   margin-left: 30px;
   opacity: ${p => p.opac};
-  /* transition: 2000 cubic-bezier(0.4, 0, 0.2, 1); */
   transition: 400ms ease-in-out;
   transition-delay: 500ms;
   transition-property: opacity, transform;
-  /* transition-delay: 2s; */
   transform: scale(${p => p.scal});
 `;
 
@@ -62,17 +68,26 @@ export const DivContact = styled.div`
   margin-bottom: 25px;
 `;
 
-export const ContactInput = styled.input`
+export const ContactInput = styled(Field)`
   width: 250px;
   height: 40px;
+  font-size: 16px;
+  font-family: ${p => p.theme.fonts.body};
   border-radius: 20px;
   border: 1px solid rgba(33, 33, 33, 0.2);
   display: block;
   margin-top: 5px;
+  padding-left: 35px;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
 
-  /* :active {
-    border: 1px solid #000;
-  } */
+  &:focus + .ico {
+    fill: ${p => p.theme.colors.accent};
+  }
+
+  &:focus {
+    border: 1px solid #100be3;
+  }
 `;
 
 export const ContactName = styled.p`
@@ -104,22 +119,58 @@ export const ContactImg = styled.img`
   margin-right: 15px;
 `;
 
-export const DeleteButtin = styled.button``;
-
-export const EditButton = styled.button``;
-
-export const ContactButton = styled.button`
+export const DeleteButton = styled.button`
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 45px;
   height: 45px;
-  border: 1px solid #100be3;
+  border: 1px solid #c70808;
   border-radius: 100%;
   background-color: transparent;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   :not(:last-child) {
     margin-right: 15px;
   }
-  /* flex-shrink: 0; */
+
+  &:hover .icon {
+    fill: white;
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:hover {
+    background-color: #c70808;
+  }
+`;
+
+export const EditButton = styled.button`
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border: 1px solid #ffa800;
+  border-radius: 100%;
+  background-color: transparent;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  :not(:last-child) {
+    margin-right: 15px;
+  }
+
+  &:hover .icon {
+    fill: white;
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:hover {
+    background-color: #ffa800;
+  }
 `;
 
 export const ContactTitle = styled.p`
@@ -134,11 +185,40 @@ export const ContactTitle = styled.p`
 `;
 
 export const FormField = styled.div`
-  display: flex;
-  flex-direction: column;
+  position: relative;
 `;
 
-export const EditContactButton = styled.button``;
+export const EditContactButton = styled.button`
+  cursor: pointer;
+  height: 45px;
+  width: 90px;
+  /* margin-right: auto; */
+  /* margin-left: auto; */
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: calc(30 / 16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.06em;
+  background-color: transparent;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  color: #100be3;
+  border-radius: 100px;
+  border: 1px solid #100be3;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background-color: ${p => p.theme.colors.accent};
+    color: white;
+  }
+
+  :not(:last-child) {
+    margin-right: 30px;
+  }
+`;
 
 export const Label = styled.label`
   color: #757575;
@@ -148,40 +228,77 @@ export const Label = styled.label`
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.14px;
-  margin-bottom: 12px;
   display: block;
+  position: relative;
+
+  :not(:last-child) {
+    margin-bottom: 12px;
+  }
 `;
 
 export const LabelImageInput = styled.label`
-  width: 120px;
-  height: 120px;
+  width: 125px;
+  height: 125px;
   background-color: #e4e4e4;
   border-radius: 100%;
-  /* display: block; */
   cursor: pointer;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:hover .photo {
+    fill: ${p => p.theme.colors.accent};
+  }
 `;
 
-export const ContactInputImage = styled.input`
+export const ContactInputImage = styled(Field)`
   display: none;
 `;
 
-export const Form = styled.form`
-  opacity: ${p => p.opacity};
-  /* transition: 2000 cubic-bezier(0.4, 0, 0.2, 1); */
-  transition: 400ms ease-in-out;
-  transition-delay: 300ms;
-  transition-property: opacity, transform;
-  /* transition-delay: 2s; */
-  transform: scale(${p => p.scale});
-  width: 250px;
+export const Svg = styled(ReactSVG)`
+  width: 14px;
+  height: 14px;
+  fill: black;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
 `;
 
-export const Svg = styled(ReactSVG)`
-  width: 15px;
-  height: 15px;
-  fill: aqua;
+export const SvgIcon = styled(ReactSVG)`
+  width: 20px;
+  height: 20px;
+  fill: ${p => p.theme.colors.yellow};
+`;
+
+export const SvgIconDelete = styled(ReactSVG)`
+  width: 20px;
+  height: 20px;
+  fill: ${p => p.theme.colors.red};
+`;
+
+export const SvgPhoto = styled(ReactSVG)`
+  width: 50px;
+  height: 50px;
+  fill: black;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+`;
+
+export const Img = styled.img`
+  width: 125px;
+  height: 125px;
+  object-fit: cover;
+`;
+
+export const FormButtonContainer = styled.div`
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+`;
+
+export const Diviii = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
